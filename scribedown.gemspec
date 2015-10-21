@@ -9,5 +9,6 @@ Gem::Specification.new do |s|
   s.files       = ["lib/scribedown.rb"]
   s.executables = ['scribedown']
   s.homepage    = 'http://javanut.net/scribedown'
-  s.license       = 'MIT'
+  s.license     = 'MIT'
+  s.add_runtime_dependency 'kramdown'
 end

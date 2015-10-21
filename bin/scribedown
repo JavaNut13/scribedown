@@ -2,4 +2,4 @@
 
 require 'scribedown'
 
-ScribeDown.hi
+ScribeDown.init

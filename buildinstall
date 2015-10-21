@@ -1,0 +1,13 @@
+#!/bin/bash
+
+gem build scribedown.gemspec
+
+gem install scribedown-0.0.1.gem
+
+mkdir -p test
+
+cd test
+
+scribedown init
+
+ls
