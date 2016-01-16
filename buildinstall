@@ -8,6 +8,4 @@ mkdir -p test
 
 cd test
 
-scribe init
-
 ls

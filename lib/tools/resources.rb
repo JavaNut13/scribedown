@@ -1,4 +1,5 @@
 require 'kramdown'
+require 'yaml'
 
 module ScribeDown
   def self.root(file=nil)
@@ -13,21 +14,25 @@ module ScribeDown
     File.open(self.root + '/resources/' + res_name).read()
   end
   
-  def self.read_file(file_name, binding=nil)
+  def self.read_file(file_name, options={})
+    binding = options[:binding]
+    format = options[:format]
+    only_in_fs = options[:in_fs]
+    
     if File.exist? file_name
       name = file_name
-    elsif File.exist? root('resources/' + file_name)
+    elsif File.exist?(root('resources/' + file_name)) && !only_in_fs
       name = root('resources/' + file_name)
     else
       raise "File or resource does not exist: #{file_name}"
     end
     
     contents = File.open(name).read()
-    if name.end_with?('.erb') && binding
+    if binding && (name.end_with?('.erb') || format == :erb)
       name = name.chomp('.erb')
       contents = erb_contents(contents, binding)
     end
-    if name.end_with?('.md') || name.end_with?('.markdown')
+    if name.end_with?('.md') || name.end_with?('.markdown') || format == :markdown
       contents = markdown_contents(contents)
     end
     return contents
@@ -39,6 +44,21 @@ module ScribeDown
   
   def self.erb_contents(contents, bind)
     ERB.new(contents).result bind
+  end
+  
+  def self.yaml_contents(contents)
+    res = YAML.load(contents)
+    symbolize(res)
+    return res
+  end
+  
+  def self.symbolize(hash)
+    hash.default_proc = proc do |h, k|
+       case k
+         when String then sym = k.to_sym; h[sym] if h.key?(sym)
+         when Symbol then str = k.to_s; h[str] if h.key?(str)
+       end
+    end
   end
   
   def self.create_file(path, contents='')

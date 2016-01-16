@@ -1,0 +1,7 @@
+default:
+  format: auto
+  base: index.html.erb
+  section_container: section.html.erb
+  base_styles:
+    - style.css
+  
