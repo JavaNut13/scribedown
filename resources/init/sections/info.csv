@@ -1,0 +1,3 @@
+Thing,Command
+Make a new ScribeDown document,scribe init
+Turn a ScribeDown doc into html,scribe generate

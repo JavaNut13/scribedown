@@ -63,8 +63,9 @@ module ScribeDown
   
     def self.csv_contents(contents)
       all = CSV.parse(contents)
-      data = all[1..-1]
       headers = all[0]
+      return if headers == nil
+      data = all[1..-1]
       data_classes = headers.map {|h| h.gsub(/\W+/, '-') }
     
       read_file('csv_template.html.erb', binding: binding)

@@ -7,3 +7,7 @@ body {
 code {
   font-family: "Anonymous Pro", "Menlo", monospace;
 }
+
+table {
+  width: 100%;
+}

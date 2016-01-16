@@ -1,10 +1,11 @@
+require 'fileutils'
 require_relative 'res/resources'
 require_relative 'generate/helpers'
 require_relative 'generate/renderer'
 require_relative 'section'
 
 module ScribeDown
-  def self.generate
+  def self.generate(options={})
     begin
       settings = Res.yaml_contents(Res.read_file('scribe.yml', in_fs: true))
     rescue
@@ -23,6 +24,8 @@ module ScribeDown
       defaults.merge! glob_default
     end
     Res.symbolize(defaults)
+    # Extra styles don't override the defaults
+    defaults[:styles] += defaults[:extra_styles] || []
     
     sections_yaml.each do |section|
       name = section
@@ -59,7 +62,8 @@ module ScribeDown
     if File.exist? 'scribe.yml'
       abort 'ScribeDown already initialised: scribe.yml exists'
     end
-    FileUtils::mkdir_p 'sections'
-    create_file('scribe.yml', read_res('scribe.yml'))
+    FileUtils.cp_r(Res.root('resources/init/.'), '.')
+    # Res.create_file('scribe.yml', Res.read_res('scribe.yml'))
+    # Res.create_file('sections/default_section.md', Res.read_res('default_section.md'))
   end
 end
