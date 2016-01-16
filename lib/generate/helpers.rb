@@ -1,4 +1,4 @@
-require_relative '../tools/resources'
+require_relative '../res/resources'
 
 module ScribeDown
   module Renderer
@@ -7,8 +7,8 @@ module ScribeDown
       "<a href=\"#{url}\" #{extras}>#{text}</a>"
     end
   
-    def self.stylesheet_link_tag(file_name)
-      "<style>\n" + ScribeDown.read_file(file_name) + "\n</style>"
+    def self.stylesheet_tag(file_name)
+      "<style>\n" + Res.read_file(file_name) + "\n</style>"
     end
   end
 end

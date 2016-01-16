@@ -3,3 +3,6 @@ sections:
   - another section.md
   - third_section:
     format: markdown
+  - forth section
+  - fifth section
+  - sixth section

@@ -1,0 +1,20 @@
+<table id="<%= name.gsub(/\W+/, '-') %>">
+  <thead>
+    <tr>
+      <% headers.each do |header| %>
+        <th><%= header %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% data.each do |line| %>
+      <tr>
+        <% line.each_with_index do |el, idx| %>
+          <td class="<%= data_classes[idx] %>">
+            <%= el %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

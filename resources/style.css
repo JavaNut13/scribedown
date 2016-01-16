@@ -1,4 +1,9 @@
 body {
   width: 60%;
   margin: auto;
+  font-family: sans-serif;
+}
+
+code {
+  font-family: "Anonymous Pro", "Menlo", monospace;
 }
