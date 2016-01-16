@@ -2,10 +2,11 @@ require_relative '../tools/resources'
 
 module ScribeDown
   class Section
-    attr_accessor :path, :options
+    attr_accessor :path, :options, :name
   
-    def initialize(path, options={})
+    def initialize(path, name, options={})
       self.path = path
+      self.name = name
       self.options = options
     end
   

@@ -28,6 +28,9 @@ module ScribeDown
     end
     
     contents = File.open(name).read()
+    if format == :plain
+      return contents
+    end
     if binding && (name.end_with?('.erb') || format == :erb)
       name = name.chomp('.erb')
       contents = erb_contents(contents, binding)

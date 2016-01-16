@@ -4,4 +4,4 @@ default:
   section_container: section.html.erb
   base_styles:
     - style.css
-  
+  output: index.html

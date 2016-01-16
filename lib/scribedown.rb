@@ -35,19 +35,14 @@ module ScribeDown
       end
       path = lookup[name]
       if path
-        sections.push Section.new(path, ops)
+        sections.push Section.new(path, name, ops)
       else
         failed.push section
       end
     end
 
-    puts Renderer.render sections, defaults
-    
-    # title = 'poop'
-    # content = read_file('sections/test.md')
-    # head_tags = stylesheet_link_tag 'style.css'
-    # result = read_file('index.html.erb', binding)
-    # create_file('index.html', result)
+    res = Renderer.render sections, defaults
+    create_file(defaults[:output], res)
   end
   
   def self.lookup_files
