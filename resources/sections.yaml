@@ -1,0 +1,5 @@
+sections:
+  - section.html
+  - another section.md
+  - third_section:
+    format: markdown

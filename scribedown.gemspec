@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.description = "Markdown for report writing"
   s.authors     = ["Will Richardson"]
   s.email       = 'william.hamish@gmail.com'
-  s.files       = ["lib/scribedown.rb"]
-  s.executables = ['scribedown']
+  s.files       = Dir['lib/**/*.rb'] + Dir['bin/*'] + Dir['resources/**/*']
+  s.executables = ['scribe']
   s.homepage    = 'http://javanut.net/scribedown'
   s.license     = 'MIT'
-  s.add_runtime_dependency 'kramdown'
+  s.add_runtime_dependency 'kramdown', '~> 1.8'
 end

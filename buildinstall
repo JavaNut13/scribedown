@@ -8,6 +8,6 @@ mkdir -p test
 
 cd test
 
-scribedown init
+scribe init
 
 ls

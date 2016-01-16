@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'scribedown'
+
+primary_arg = ARGV[0]
+
+case primary_arg
+when 'i', 'init'
+  ScribeDown.init
+when 'g', 'generate'
+  ScribeDown.generate
+end
