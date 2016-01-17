@@ -4,6 +4,9 @@ default:
   container: section.html.erb
   styles:
     - style.css
-  output: index.html
+  output:
+    default: all
+    html: index.html
+    pdf: document.pdf
   classes: ''
   

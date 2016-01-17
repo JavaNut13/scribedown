@@ -1,5 +1,6 @@
 require_relative '../res/resources'
 require_relative 'helpers'
+require 'pdfkit'
 
 module ScribeDown
   module Renderer
@@ -30,7 +31,6 @@ module ScribeDown
         template = Res.read_file(section.container, format: :plain)
         @@templates[section.container] = template
       end
-      
       content = Res.read_file(section.path, format: section.format.to_sym, binding: binding)
       Res.erb_contents(template, binding)
     end
@@ -44,8 +44,12 @@ module ScribeDown
       @@settings = settings
       @@sections = sections
       @@templates = Hash.new
-      
+      title ||= settings[:title]
       return Res.read_file(settings[:base], binding: binding)
+    end
+    
+    def self.to_pdf(html_content)
+      PDFKit.new(html_content).to_pdf
     end
   end
 end

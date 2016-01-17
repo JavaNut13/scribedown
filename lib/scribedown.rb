@@ -45,8 +45,16 @@ module ScribeDown
       end
     end
 
-    res = Renderer.to_html sections, defaults
-    Res.create_file(defaults[:output], res)
+    output = defaults[:output]
+    type = output['default']
+    html = Renderer.to_html sections, defaults
+    if type == 'all' || type == 'html'
+      Res.create_file(defaults[:output]['html'], html)
+    end
+    if type == 'all' || type == 'pdf'
+      pdf = Renderer.to_pdf html
+      Res.create_file(defaults[:output]['pdf'], pdf)
+    end
   end
   
   def self.lookup_files

@@ -11,4 +11,5 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://javanut.net/scribedown'
   s.license     = 'MIT'
   s.add_runtime_dependency 'kramdown', '~> 1.8'
+  s.add_runtime_dependency 'pdfkit', '~> 0.8'
 end
