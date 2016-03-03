@@ -9,4 +9,6 @@ when 'i', 'init'
   ScribeDown.init
 when 'g', 'generate'
   ScribeDown.generate
+when 'c', 'create'
+  ScribeDown.new_section(ARGV[1])
 end

@@ -74,4 +74,19 @@ module ScribeDown
     # Res.create_file('scribe.yml', Res.read_res('scribe.yml'))
     # Res.create_file('sections/default_section.md', Res.read_res('default_section.md'))
   end
+  
+  def self.new_section(name)
+    begin
+      settings = Res.yaml_contents(Res.read_file('scribe.yml', in_fs: true))
+    rescue
+      abort 'FATAL: Not a scribedown directory. Unable to read scribe.yml.'
+    end
+    new_name = name.split('.').first
+    if new_name == name
+      name = name + '.md'
+    end
+    settings[:sections].push new_name
+    Res.create_file('sections/' + name, '# ' + new_name)
+    Res.create_file('scribe.yml', settings.to_yaml)
+  end
 end
