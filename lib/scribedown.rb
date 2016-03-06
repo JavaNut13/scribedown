@@ -8,8 +8,8 @@ module ScribeDown
   def self.generate(options={})
     begin
       settings = Res.yaml_contents(Res.read_file('scribe.yml', in_fs: true))
-    rescue
-      abort 'FATAL: Not a scribedown directory. Unable to read scribe.yml.'
+    rescue Exception => e
+      abort "FATAL: Not a scribedown directory. Unable to read scribe.yml.\n" + e.message
     end
     sections_yaml = settings[:sections]
     sections = Array.new

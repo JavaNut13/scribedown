@@ -10,5 +10,7 @@ when 'i', 'init'
 when 'g', 'generate'
   ScribeDown.generate
 when 'c', 'create'
-  ScribeDown.new_section(ARGV[1])
+  ARGV[1..-1].each do |name|
+    ScribeDown.new_section(name)
+  end
 end
